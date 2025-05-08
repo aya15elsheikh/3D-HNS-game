@@ -5,11 +5,12 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     public NavMeshAgent agent;
-    public float attackRadius = 10f; 
+    public float attackRadius = 5f; 
     public LevelManager levelManager;
     bool CanAttack = true;
-    float AttackCooldown = 2f;
+    float AttackCooldown = 0.5f;
     Animator anim;
+    public float health = 2;
 
     private void Start()
     {
@@ -32,11 +33,25 @@ public class EnemyController : MonoBehaviour
                     StartCoroutine(cooldown());
                     //play attack animation
                     anim.SetTrigger("Attack");
+                    LevelManager.instance.player.GetComponent<EnergySystemComponent>().GetEnergySystem().RegenEnergy(-2);
 
                 }
+              
             }
         }
-       
+    }
+    public void TakeHit()
+    {
+        health --;
+        if (health == 0)
+        {
+            LevelManager.instance.player.GetComponent<EnergySystemComponent>().GetEnergySystem().RegenEnergy(30); 
+
+            Destroy(gameObject);
+           
+           // LevelManager.instance.score += 10;
+           
+        }
     }
 
    IEnumerator cooldown()

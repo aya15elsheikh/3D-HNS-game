@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnergyBarUI : MonoBehaviour
 {
@@ -16,9 +18,12 @@ public class EnergyBarUI : MonoBehaviour
     {
         if (EnergySystem.TryGetEnergySystem(getEnergySystemGameObject, out EnergySystem energySystem))
         {
-            SetEnergySystem(energySystem);
+            SetEnergySystem(energySystem); 
+          //  SetEnergyBarFillAmount(100.0f); 
+
         }
     }
+
 
     public void SetEnergySystem(EnergySystem energySystem)
     {
@@ -38,8 +43,23 @@ public class EnergyBarUI : MonoBehaviour
 
     private void UpdateEnergyBar()
     {
-        image.fillAmount = energySystem.GetEnergyNormalized();
+        if (energySystem != null)
+        {
+            image.fillAmount = energySystem.GetEnergyNormalized();
+        }
     }
+
+    //private void Awake()
+    //{
+    //    image = GetComponent<Image>();
+    //    SetEnergyBarFillAmount(1.0f); // Set the 
+    //}
+
+    private void SetEnergyBarFillAmount(float fillAmount)
+    {
+        image.fillAmount = fillAmount;
+    }
+
 
     private void OnDestroy()
     {

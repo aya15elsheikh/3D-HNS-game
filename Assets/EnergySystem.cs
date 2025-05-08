@@ -10,7 +10,7 @@ public class EnergySystem
     public event EventHandler OnEnergyRegened;
     public event EventHandler OnEnergyDepleted;
 
-    private float energyMax;
+    private float energyMax=200;
     private float energy;
     private float depletionRate;
     private float regenRate;
@@ -18,7 +18,7 @@ public class EnergySystem
 
     public EnergySystem(float energyMax, float depletionRate = 1f, float regenRate = 0f)
     {
-        this.energyMax = energyMax;
+        this.energyMax = 200;
         energy = energyMax;
         this.depletionRate = depletionRate;
         this.regenRate = regenRate;
@@ -214,6 +214,7 @@ public class EnergySystem
             return false;
         }
     }
+
 }
 
 public interface IGetEnergySystem

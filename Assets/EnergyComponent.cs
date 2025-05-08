@@ -36,6 +36,7 @@ public class EnergySystemComponent : MonoBehaviour, IGetEnergySystem
     {
         // Update the energy system with delta time for automatic depletion/regeneration
         energySystem.Update(Time.deltaTime);
+
     }
 
     /// <summary>
