@@ -12,6 +12,7 @@
 
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CodeMonkey.HealthSystemCM
 {
@@ -91,6 +92,7 @@ namespace CodeMonkey.HealthSystemCM
         public void Die()
         {
             OnDead?.Invoke(this, EventArgs.Empty);
+            SceneManager.LoadScene("menu");
         }
 
         /// <summary>

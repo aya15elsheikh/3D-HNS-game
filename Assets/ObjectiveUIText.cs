@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Canvas))]
 public class ObjectiveUI : MonoBehaviour
@@ -17,6 +18,7 @@ public class ObjectiveUI : MonoBehaviour
     private Canvas canvas;
     private RectTransform rectTransform;
     private Color defaultTextColor;
+
 
     private void Awake()
     {
@@ -100,8 +102,12 @@ public class ObjectiveUI : MonoBehaviour
         if (objectiveText != null)
         {
             StartCoroutine(PulseTextColor());
-        }
+        
+            SceneManager.LoadScene("middlescene");
+         }
     }
+
+
 
     /// <summary>
     /// Simple animation to pulse the text color when objectives are complete

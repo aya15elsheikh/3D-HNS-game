@@ -1,4 +1,5 @@
 using System.Collections;
+using CodeMonkey.HealthSystemCM;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -33,7 +34,7 @@ public class EnemyController : MonoBehaviour
                     StartCoroutine(cooldown());
                     //play attack animation
                     anim.SetTrigger("Attack");
-                    LevelManager.instance.player.GetComponent<EnergySystemComponent>().GetEnergySystem().RegenEnergy(-2);
+                    LevelManager.instance.player.GetComponent<HealthSystemComponent>().GetHealthSystem().Damage(1);
 
                 }
               
@@ -45,9 +46,11 @@ public class EnemyController : MonoBehaviour
         health --;
         if (health == 0)
         {
-            LevelManager.instance.player.GetComponent<EnergySystemComponent>().GetEnergySystem().RegenEnergy(30); 
+            LevelManager.instance.player.GetComponent<EnergySystemComponent>().GetEnergySystem().RegenEnergy(30);
 
-            Destroy(gameObject);
+            anim.SetTrigger("Death");
+            
+            Destroy(gameObject, 2f);
            
            // LevelManager.instance.score += 10;
            
