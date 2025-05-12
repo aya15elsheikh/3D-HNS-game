@@ -31,7 +31,9 @@ public class PlayerAttack : MonoBehaviour
         {
             if (enemy.TryGetComponent<EnemyController>(out EnemyController enemyController))
             {
-                enemyController.TakeHit(); // Call the TakeHit method on the enemy
+                enemyController.TakeHit();
+                AudioSource audio = GetComponent<AudioSource>();
+                audio.Play();
             }
         }
 
@@ -52,4 +54,5 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+
 }
