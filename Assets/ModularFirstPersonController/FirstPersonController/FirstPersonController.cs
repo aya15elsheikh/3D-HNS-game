@@ -6,6 +6,8 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using CodeMonkey.HealthSystemCM;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -59,6 +61,7 @@ public class FirstPersonController : MonoBehaviour
     // Internal Variables
     private bool isWalking = false;
     private EnergySystem playerEnergySystem;
+    private HealthSystem playerHealthSystem;
     private float walkingDeplete;
     private float runningDeplete;
 
@@ -168,6 +171,7 @@ public class FirstPersonController : MonoBehaviour
             crosshairObject.gameObject.SetActive(false);
         }
         playerEnergySystem = GetComponentInParent<EnergySystemComponent>().GetEnergySystem();
+        playerHealthSystem = GetComponentInParent<HealthSystemComponent>().GetHealthSystem();
         walkingDeplete = playerEnergySystem.GetDepletionRate();
         runningDeplete = playerEnergySystem.GetDepletionRate() * energySprintPenality;
 
@@ -365,6 +369,10 @@ public class FirstPersonController : MonoBehaviour
         if (enableHeadBob)
         {
             HeadBob();
+        }
+        if (playerEnergySystem.IsDepleted())
+        {
+            playerHealthSystem.Damage(3);
         }
     }
 
