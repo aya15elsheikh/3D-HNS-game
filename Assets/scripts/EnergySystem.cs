@@ -10,7 +10,7 @@ public class EnergySystem
     public event EventHandler OnEnergyRegened;
     public event EventHandler OnEnergyDepleted;
 
-    private float energyMax=200;
+    private float energyMax;
     private float energy;
     private float depletionRate;
     private float regenRate;
@@ -18,7 +18,7 @@ public class EnergySystem
 
     public EnergySystem(float energyMax, float depletionRate = 1f, float regenRate = 0f)
     {
-        this.energyMax = 200;
+        this.energyMax = energyMax;
         energy = energyMax;
         this.depletionRate = depletionRate;
         this.regenRate = regenRate;
@@ -171,7 +171,7 @@ public class EnergySystem
 
     public void HandlePickup()
     {
-        this.RegenEnergy(10);
+        this.RegenEnergy(30);
     }
 
     public static bool TryGetEnergySystem(GameObject getEnergySystemGameObject, out EnergySystem energySystem, bool logErrors = false)
