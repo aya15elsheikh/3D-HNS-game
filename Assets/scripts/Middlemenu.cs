@@ -12,8 +12,7 @@ public class Middlemenu : MonoBehaviour
 
     public void ContinueGame()
     {
-   
-        SceneManager.LoadScene("Level 2");
+        SceneManager.LoadScene("Level 3");
     }
     public void QuitGame()
     {

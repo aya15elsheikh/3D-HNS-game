@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class menu : MonoBehaviour
+public class GameOver : MonoBehaviour
 {
-   
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
@@ -11,10 +11,12 @@ public class menu : MonoBehaviour
 
     }
 
-    public void PlayGame()
+
+    public void RestartGame()
     {
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("menu");
     }
+
 
     // Update is called once per frame
     void Update()

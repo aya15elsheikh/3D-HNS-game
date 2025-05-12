@@ -102,7 +102,12 @@ public class ObjectiveUI : MonoBehaviour
         if (objectiveText != null)
         {
             StartCoroutine(PulseTextColor());
-        
+
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            if (currentSceneName!="Level 1")
+            {
+                SceneManager.LoadScene("menu");
+            }
             SceneManager.LoadScene("middlescene");
          }
     }
