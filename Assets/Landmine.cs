@@ -1,15 +1,15 @@
-using System;
+using CodeMonkey.HealthSystemCM;
 using UnityEngine;
 
 public class Landmine : MonoBehaviour
 {
     [Header("Audio Settings")]
-    [SerializeField] private AudioSource beepSound;
-    [SerializeField] private AudioSource explodeSound;
-    [SerializeField] private float minVolume = 0.1f;
-    [SerializeField] private float maxVolume = 1.0f;
+    public AudioSource beepSound;
+    public AudioSource explodeSound;
+    public float minVolume = 0.1f;
+    public float maxVolume = 1.0f;
+    public float damage;
 
-    public event Action<GameObject> ExplodedOnPlayer;
 
     private Transform player;
     private float beepTimer = 0f;
@@ -94,7 +94,7 @@ public class Landmine : MonoBehaviour
         {
             isActive = false;
             explodeSound.Play();
-            ExplodedOnPlayer?.Invoke(playerObject);
+            playerObject.GetComponent<HealthSystemComponent>().GetHealthSystem().Damage(damage);
             Destroy(gameObject, explodeSound.clip.length + 0.1f);
         }
     }
